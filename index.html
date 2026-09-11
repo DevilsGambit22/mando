@@ -2,20 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,viewport-fit=cover"
->
-
-<title>The Mandalorians Club | New Members</title>
+<title>New Members</title>
 
 <style>
-
-/* =========================================================
-   RESET
-   ========================================================= */
-
 *{
   box-sizing:border-box;
 }
@@ -27,78 +18,45 @@ body{
   width:100%;
   min-height:100%;
   background:transparent;
-}
-
-body{
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Helvetica,
-    Arial,
-    sans-serif;
-
-  overflow-x:hidden;
-}
-
-
-/* =========================================================
-   BOARD
-   ========================================================= */
-
-.member-board{
-  position:relative;
-
-  width:100%;
-  max-width:768px;
-
-  /*
-    The artwork is 768 x 1536.
-    This keeps the exact proportions on desktop and mobile.
-  */
-  aspect-ratio:768 / 1536;
-
-  margin:0 auto;
-
   overflow:hidden;
 }
 
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
 
-/* =========================================================
-   BOARD ARTWORK
-   ========================================================= */
+/* ==============================
+   MEMBER BOARD
+   ============================== */
 
-.board-art{
+#board{
+  position:relative;
+  width:100%;
+  max-width:768px;
+  aspect-ratio:768 / 1536;
+  margin:0 auto;
+  overflow:hidden;
+}
+
+/* Board PNG */
+
+#boardArt{
   position:absolute;
-
-  top:0;
-  left:0;
-
+  inset:0;
   width:100%;
   height:100%;
-
-  object-fit:fill;
-
   display:block;
-
+  object-fit:fill;
   z-index:1;
-
   pointer-events:none;
   user-select:none;
 }
 
+/* ==============================
+   10 API MEMBER ROWS
+   ============================== */
 
-/* =========================================================
-   MEMBER LIST POSITION
-   ========================================================= */
-
-/*
-  This overlay is positioned over the 10 empty rows
-  in new-members-board.png.
-*/
-
-.member-list{
+#members{
   position:absolute;
 
   left:6%;
@@ -113,18 +71,15 @@ body{
   z-index:5;
 }
 
-
-/* =========================================================
-   INDIVIDUAL MEMBER
-   ========================================================= */
+/* ==============================
+   MEMBER
+   ============================== */
 
 .member{
-  position:relative;
-
   display:grid;
 
   grid-template-columns:
-    clamp(38px,7.5vw,58px)
+    clamp(34px,7vw,54px)
     minmax(0,1fr)
     auto;
 
@@ -137,17 +92,10 @@ body{
 
   min-width:0;
 
-  color:#ffffff;
-
   transition:
-    transform .22s ease,
-    filter .22s ease;
+    transform .2s ease,
+    filter .2s ease;
 }
-
-
-/* =========================================================
-   MEMBER HOVER
-   ========================================================= */
 
 .member:hover{
   transform:scale(1.025);
@@ -156,18 +104,15 @@ body{
     brightness(1.15)
     drop-shadow(
       0 0 7px
-      rgba(63,220,255,.75)
+      rgba(75,220,255,.8)
     );
 }
 
-
-/* =========================================================
+/* ==============================
    AVATAR
-   ========================================================= */
+   ============================== */
 
-.avatar-wrap{
-  position:relative;
-
+.avatar-shell{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -177,79 +122,41 @@ body{
 
   border-radius:50%;
 
-  border:
-    clamp(1px,.25vw,2px)
-    solid
-    #67e6ff;
-
-  background:#06111d;
-
   overflow:hidden;
+
+  border:2px solid #65e5ff;
+
+  background:#07121f;
 
   box-shadow:
     0 0 5px rgba(89,226,255,.95),
-    0 0 12px rgba(0,188,255,.75),
-    0 0 22px rgba(0,144,255,.35);
+    0 0 12px rgba(0,188,255,.7),
+    0 0 20px rgba(0,144,255,.35);
 }
 
 .avatar{
   display:block;
-
   width:100%;
   height:100%;
-
   object-fit:cover;
-
   border-radius:50%;
 }
 
+/* ==============================
+   MEMBER INFORMATION
+   ============================== */
 
-/* =========================================================
-   USER INFORMATION
-   ========================================================= */
-
-.member-info{
+.member-data{
   min-width:0;
   overflow:hidden;
 }
 
-.username-line{
+.name-row{
   display:flex;
-
   align-items:center;
-
   gap:5px;
-
   min-width:0;
 }
-
-
-/* =========================================================
-   CHESS TITLE
-   ========================================================= */
-
-.title{
-  flex:none;
-
-  padding:1px 4px;
-
-  border-radius:3px;
-
-  background:#c83c3c;
-
-  color:#ffffff;
-
-  font-size:clamp(6px,1.25vw,9px);
-
-  line-height:1.3;
-
-  font-weight:900;
-}
-
-
-/* =========================================================
-   USERNAME
-   ========================================================= */
 
 .username{
   display:block;
@@ -269,84 +176,93 @@ body{
   text-decoration:none;
 
   text-shadow:
-    0 0 4px rgba(255,255,255,.45),
-    0 0 8px rgba(55,213,255,.8);
+    0 0 5px rgba(255,255,255,.4),
+    0 0 9px rgba(54,216,255,.85);
 }
 
 .username:hover{
-  color:#c6f8ff;
+  color:#baf5ff;
 }
 
+/* ==============================
+   CHESS TITLE
+   ============================== */
 
-/* =========================================================
-   NEW MEMBER LABEL
-   ========================================================= */
+.title{
+  flex:none;
 
-.meta{
+  padding:1px 4px;
+
+  border-radius:3px;
+
+  background:#c63d3d;
+
+  color:#ffffff;
+
+  font-size:clamp(6px,1.2vw,9px);
+
+  font-weight:900;
+}
+
+/* ==============================
+   MEMBER LABEL
+   ============================== */
+
+.member-label{
   margin-top:2px;
 
-  color:#a6c4d4;
+  color:#9dbdcc;
 
-  font-size:clamp(6px,1.3vw,10px);
+  font-size:clamp(6px,1.25vw,10px);
 
-  font-weight:600;
+  font-weight:700;
 
-  letter-spacing:.3px;
+  letter-spacing:.4px;
 
-  white-space:nowrap;
+  text-transform:uppercase;
 }
 
-
-/* =========================================================
+/* ==============================
    RATING
-   ========================================================= */
+   ============================== */
 
 .rating{
-  min-width:clamp(38px,8vw,64px);
+  min-width:clamp(40px,8vw,64px);
 
   text-align:right;
 
-  color:#9ef1ff;
+  color:#a7f3ff;
 
   font-size:clamp(10px,2.2vw,17px);
 
   font-weight:900;
 
-  letter-spacing:.4px;
-
   text-shadow:
-    0 0 4px #4edfff,
-    0 0 10px rgba(0,196,255,.9),
-    0 0 18px rgba(0,135,255,.5);
+    0 0 5px #4edfff,
+    0 0 11px rgba(0,196,255,.8);
 }
 
-
-/* =========================================================
-   RATING TYPE
-   ========================================================= */
-
-.rating-label{
+.rating-type{
   display:block;
 
   margin-top:2px;
 
-  color:#92b9cb;
+  color:#8eb6c8;
 
-  font-size:clamp(5px,1.05vw,8px);
+  font-size:clamp(5px,1vw,8px);
 
   font-weight:800;
 
-  letter-spacing:1.5px;
+  letter-spacing:1.2px;
 
   text-transform:uppercase;
 }
 
+/* ==============================
+   LOADING
+   ============================== */
 
-/* =========================================================
-   LOADING MESSAGE
-   ========================================================= */
-
-.status{
+#status{
   position:absolute;
 
   left:50%;
@@ -354,22 +270,22 @@ body{
 
   transform:translate(-50%,-50%);
 
-  z-index:20;
+  z-index:10;
 
-  padding:9px 15px;
-
-  background:
-    rgba(1,9,20,.94);
+  padding:8px 12px;
 
   border:
     1px solid
-    rgba(83,223,255,.65);
+    rgba(75,220,255,.6);
 
-  border-radius:8px;
+  border-radius:7px;
 
-  color:#baf5ff;
+  background:
+    rgba(2,10,20,.9);
 
-  font-size:11px;
+  color:#a7f3ff;
+
+  font-size:10px;
 
   font-weight:800;
 
@@ -378,35 +294,19 @@ body{
   white-space:nowrap;
 
   box-shadow:
-    0 0 8px rgba(0,190,255,.5),
-    0 0 20px rgba(0,150,255,.3);
+    0 0 15px
+    rgba(0,190,255,.35);
 }
 
-.status.error{
-  color:#ffd0d0;
-
-  border-color:
-    rgba(255,90,90,.6);
-}
-
-
-/* =========================================================
+/* ==============================
    MOBILE
-   ========================================================= */
+   ============================== */
 
 @media(max-width:480px){
 
-  .member-list{
-    left:6%;
-    right:6%;
-
-    top:20.3%;
-    height:60.2%;
-  }
-
   .member{
     grid-template-columns:
-      36px
+      34px
       minmax(0,1fr)
       43px;
 
@@ -416,7 +316,7 @@ body{
     padding-right:15px;
   }
 
-  .avatar-wrap{
+  .avatar-shell{
     width:34px;
     height:34px;
   }
@@ -425,266 +325,91 @@ body{
     font-size:10px;
   }
 
-  .meta{
+  .member-label{
     font-size:6px;
   }
 
   .rating{
-    min-width:42px;
-
     font-size:11px;
   }
 
-  .rating-label{
+  .rating-type{
     font-size:5px;
-    letter-spacing:1px;
   }
-
 }
-
-
-/* =========================================================
-   VERY SMALL SCREENS
-   ========================================================= */
-
-@media(max-width:330px){
-
-  .member{
-    grid-template-columns:
-      31px
-      minmax(0,1fr)
-      38px;
-
-    gap:5px;
-
-    padding-left:11px;
-    padding-right:12px;
-  }
-
-  .avatar-wrap{
-    width:30px;
-    height:30px;
-  }
-
-  .username{
-    font-size:9px;
-  }
-
-  .rating{
-    font-size:10px;
-  }
-
-}
-
 </style>
 </head>
 
-
 <body>
 
+<div id="board">
 
-<!-- =======================================================
-     NEW MEMBER BOARD
-     ======================================================= -->
-
-<div class="member-board">
-
-
-  <!--
-    IMPORTANT:
-
-    Keep this image in the SAME GitHub repository
-    as index.html.
-
-    Filename:
-
-    new-members-board.png
-  -->
+  <!-- BOARD ASSET -->
 
   <img
-    class="board-art"
+    id="boardArt"
     src="./new-members-board.png"
-    alt=""
+    alt="New Members"
   >
 
+  <!-- API STATUS -->
 
-  <!-- Loading message -->
-
-  <div
-    id="status"
-    class="status"
-  >
-    SCANNING CLUB ROSTER...
+  <div id="status">
+    LOADING MEMBERS...
   </div>
 
+  <!-- LIVE MEMBERS -->
 
-  <!-- API members appear here -->
-
-  <div
-    id="memberList"
-    class="member-list"
-  ></div>
-
+  <div id="members"></div>
 
 </div>
 
-
 <script>
 
-/* =========================================================
-   CONFIGURATION
-   ========================================================= */
+/* ==============================
+   SETTINGS
+   ============================== */
 
-const CLUB_SLUG =
+const CLUB =
   "the-mandalorians-club-1";
 
-const MEMBER_LIMIT =
+const LIMIT =
   10;
 
 
-/* =========================================================
-   FETCH JSON
-   ========================================================= */
+/* ==============================
+   FETCH CHESS.COM API
+   ============================== */
 
-async function fetchJSON(url){
+async function getJSON(url){
 
   const response =
-    await fetch(
-      url,
-      {
-        headers:{
-          "Accept":"application/json"
-        }
-      }
-    );
+    await fetch(url);
 
   if(!response.ok){
 
     throw new Error(
-      "Chess.com API returned " +
+      "Chess.com API: " +
       response.status
     );
 
   }
 
   return response.json();
-
 }
 
 
-/* =========================================================
-   FIND HIGHEST CURRENT RATING
-   ========================================================= */
-
-function getHighestRating(stats){
-
-  const ratings = [];
-
-
-  const categories = [
-
-    [
-      "Rapid",
-      stats?.chess_rapid?.last?.rating
-    ],
-
-    [
-      "Blitz",
-      stats?.chess_blitz?.last?.rating
-    ],
-
-    [
-      "Bullet",
-      stats?.chess_bullet?.last?.rating
-    ],
-
-    [
-      "Daily",
-      stats?.chess_daily?.last?.rating
-    ],
-
-    [
-      "960",
-      stats?.chess960_daily?.last?.rating
-    ]
-
-  ];
-
-
-  for(
-    const [category,rating]
-    of categories
-  ){
-
-    if(
-      typeof rating === "number" &&
-      Number.isFinite(rating)
-    ){
-
-      ratings.push({
-        category,
-        rating
-      });
-
-    }
-
-  }
-
-
-  if(!ratings.length){
-
-    return {
-      value:"—",
-      category:"UNRATED"
-    };
-
-  }
-
-
-  ratings.sort(
-    (a,b) =>
-      b.rating - a.rating
-  );
-
-
-  return {
-
-    value:
-      ratings[0].rating,
-
-    category:
-      ratings[0].category
-
-  };
-
-}
-
-
-/* =========================================================
-   GET NEWEST CLUB MEMBERS
-   ========================================================= */
+/* ==============================
+   GET NEWEST MEMBERS
+   ============================== */
 
 async function getNewestMembers(){
 
-  const url =
-    "https://api.chess.com/pub/club/" +
-    CLUB_SLUG +
-    "/members";
-
-
   const data =
-    await fetchJSON(url);
+    await getJSON(
+      `https://api.chess.com/pub/club/${CLUB}/members`
+    );
 
-
-  /*
-    Chess.com divides the member list into:
-
-    weekly
-    monthly
-    all_time
-
-    Combine all three.
-  */
 
   const combined = [
 
@@ -730,75 +455,152 @@ async function getNewestMembers(){
 
 
   /*
-    Newest join date first.
+    Sort newest join date first.
   */
 
-  const members =
-    [...unique.values()];
+  return [...unique.values()]
 
+    .sort(
 
-  members.sort(
+      (a,b) =>
 
-    (a,b) =>
+        (b.joined || 0) -
+        (a.joined || 0)
 
-      (b.joined || 0) -
-      (a.joined || 0)
+    )
 
-  );
-
-
-  return members.slice(
-    0,
-    MEMBER_LIMIT
-  );
+    .slice(
+      0,
+      LIMIT
+    );
 
 }
 
 
-/* =========================================================
-   LOAD PROFILE + STATS
-   ========================================================= */
+/* ==============================
+   HIGHEST CURRENT RATING
+   ============================== */
 
-async function enrichMember(member){
+function highestRating(stats){
+
+  const ratings = [
+
+    {
+      type:"Rapid",
+      value:
+        stats?.chess_rapid
+          ?.last
+          ?.rating
+    },
+
+    {
+      type:"Blitz",
+      value:
+        stats?.chess_blitz
+          ?.last
+          ?.rating
+    },
+
+    {
+      type:"Bullet",
+      value:
+        stats?.chess_bullet
+          ?.last
+          ?.rating
+    },
+
+    {
+      type:"Daily",
+      value:
+        stats?.chess_daily
+          ?.last
+          ?.rating
+    },
+
+    {
+      type:"960",
+      value:
+        stats?.chess960_daily
+          ?.last
+          ?.rating
+    }
+
+  ];
+
+
+  const valid =
+    ratings.filter(
+
+      item =>
+        Number.isFinite(
+          item.value
+        )
+
+    );
+
+
+  if(!valid.length){
+
+    return {
+
+      type:"Unrated",
+
+      value:"—"
+
+    };
+
+  }
+
+
+  valid.sort(
+
+    (a,b) =>
+
+      b.value -
+      a.value
+
+  );
+
+
+  return valid[0];
+
+}
+
+
+/* ==============================
+   PROFILE + STATS
+   ============================== */
+
+async function loadMember(member){
 
   const username =
     member.username;
 
 
-  const encodedUsername =
+  const encoded =
     encodeURIComponent(
       username
     );
 
 
-  const profileURL =
-    "https://api.chess.com/pub/player/" +
-    encodedUsername;
-
-
-  const statsURL =
-    "https://api.chess.com/pub/player/" +
-    encodedUsername +
-    "/stats";
-
-
-  /*
-    Load profile and stats simultaneously.
-  */
-
   const results =
     await Promise.allSettled([
 
-      fetchJSON(profileURL),
+      getJSON(
+        `https://api.chess.com/pub/player/${encoded}`
+      ),
 
-      fetchJSON(statsURL)
+      getJSON(
+        `https://api.chess.com/pub/player/${encoded}/stats`
+      )
 
     ]);
 
 
   const profile =
 
-    results[0].status === "fulfilled"
+    results[0].status ===
+    "fulfilled"
 
       ? results[0].value
 
@@ -807,15 +609,16 @@ async function enrichMember(member){
 
   const stats =
 
-    results[1].status === "fulfilled"
+    results[1].status ===
+    "fulfilled"
 
       ? results[1].value
 
       : {};
 
 
-  const highest =
-    getHighestRating(stats);
+  const best =
+    highestRating(stats);
 
 
   return {
@@ -830,66 +633,26 @@ async function enrichMember(member){
       profile.title || "",
 
     rating:
-      highest.value,
+      best.value,
 
-    category:
-      highest.category
+    ratingType:
+      best.type
 
   };
 
 }
 
 
-/* =========================================================
-   ESCAPE HTML
-   ========================================================= */
+/* ==============================
+   FALLBACK AVATAR
+   ============================== */
 
-function escapeHTML(value){
-
-  return String(
-    value ?? ""
-  )
-
-  .replaceAll(
-    "&",
-    "&amp;"
-  )
-
-  .replaceAll(
-    "<",
-    "&lt;"
-  )
-
-  .replaceAll(
-    ">",
-    "&gt;"
-  )
-
-  .replaceAll(
-    '"',
-    "&quot;"
-  )
-
-  .replaceAll(
-    "'",
-    "&#039;"
-  );
-
-}
-
-
-/* =========================================================
-   DEFAULT AVATAR
-   ========================================================= */
-
-function getFallbackAvatar(){
+function fallbackAvatar(){
 
   const svg = `
 
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="100"
-    height="100"
     viewBox="0 0 100 100"
   >
 
@@ -908,12 +671,12 @@ function getFallbackAvatar(){
 
     <path
       d="
-        M39 42
-        H61
-        C61 54 66 62 72 69
-        H28
-        C34 62 39 54 39 42
-        Z
+      M39 42
+      H61
+      C61 54 66 62 72 69
+      H28
+      C34 62 39 54 39 42
+      Z
       "
       fill="#65e5ff"
     />
@@ -952,166 +715,186 @@ function getFallbackAvatar(){
 }
 
 
-/* =========================================================
-   BUILD MEMBER ROW
-   ========================================================= */
+/* ==============================
+   ESCAPE TEXT
+   ============================== */
 
-function createMemberHTML(member){
+function safe(value){
+
+  return String(
+    value ?? ""
+  )
+
+  .replaceAll(
+    "&",
+    "&amp;"
+  )
+
+  .replaceAll(
+    "<",
+    "&lt;"
+  )
+
+  .replaceAll(
+    ">",
+    "&gt;"
+  )
+
+  .replaceAll(
+    '"',
+    "&quot;"
+  )
+
+  .replaceAll(
+    "'",
+    "&#039;"
+  );
+
+}
+
+
+/* ==============================
+   BUILD MEMBER ROW
+   ============================== */
+
+function memberHTML(member){
 
   const username =
-    escapeHTML(
+    safe(
       member.username
     );
 
 
   const title =
-    escapeHTML(
+    safe(
       member.title
     );
 
 
   const rating =
-    escapeHTML(
+    safe(
       member.rating
     );
 
 
-  const category =
-    escapeHTML(
-      member.category
+  const ratingType =
+    safe(
+      member.ratingType
     );
 
 
   const profileURL =
 
-    "https://www.chess.com/member/" +
-
-    encodeURIComponent(
-      member.username
-    );
-
-
-  const fallback =
-    getFallbackAvatar();
+    `https://www.chess.com/member/${
+      encodeURIComponent(
+        member.username
+      )
+    }`;
 
 
   const avatar =
 
-    member.avatar
+    member.avatar ||
 
-      ? escapeHTML(
-          member.avatar
-        )
-
-      : fallback;
+    fallbackAvatar();
 
 
   return `
 
-    <div class="member">
+  <div class="member">
 
 
-      <!-- AVATAR -->
+    <div class="avatar-shell">
 
-      <div class="avatar-wrap">
+      <img
+        class="avatar"
 
-        <img
-          class="avatar"
+        src="${safe(avatar)}"
 
-          src="${avatar}"
+        alt="${username}"
 
-          alt="${username}"
+        loading="lazy"
+      >
 
-          loading="lazy"
+    </div>
 
-          onerror="
-            this.onerror=null;
-            this.src='${fallback}';
-          "
+
+    <div class="member-data">
+
+
+      <div class="name-row">
+
+
+        ${
+          title
+
+          ?
+
+          `
+          <span class="title">
+            ${title}
+          </span>
+          `
+
+          :
+
+          ""
+        }
+
+
+        <a
+          class="username"
+
+          href="${profileURL}"
+
+          target="_blank"
+
+          rel="noopener noreferrer"
         >
-
-      </div>
-
-
-      <!-- USER INFORMATION -->
-
-      <div class="member-info">
-
-
-        <div class="username-line">
-
-
-          ${
-            title
-
-            ?
-
-            `
-            <span class="title">
-              ${title}
-            </span>
-            `
-
-            :
-
-            ""
-          }
-
-
-          <a
-            class="username"
-
-            href="${profileURL}"
-
-            target="_blank"
-
-            rel="noopener noreferrer"
-          >
-            ${username}
-          </a>
-
-
-        </div>
-
-
-        <div class="meta">
-
-          NEW MEMBER
-
-        </div>
+          ${username}
+        </a>
 
 
       </div>
 
 
-      <!-- RATING -->
+      <div class="member-label">
 
-      <div class="rating">
-
-        ${rating}
-
-
-        <span class="rating-label">
-
-          ${category}
-
-        </span>
+        NEW MEMBER
 
       </div>
 
 
     </div>
 
+
+    <div class="rating">
+
+      ${rating}
+
+
+      <span class="rating-type">
+
+        ${ratingType}
+
+      </span>
+
+
+    </div>
+
+
+  </div>
+
   `;
 
 }
 
 
-/* =========================================================
-   LOAD BOARD
-   ========================================================= */
+/* ==============================
+   RENDER
+   ============================== */
 
-async function loadBoard(){
+async function renderMembers(){
 
   const status =
     document.getElementById(
@@ -1119,9 +902,9 @@ async function loadBoard(){
     );
 
 
-  const memberList =
+  const container =
     document.getElementById(
-      "memberList"
+      "members"
     );
 
 
@@ -1133,17 +916,8 @@ async function loadBoard(){
 
 
     status.textContent =
-      "SCANNING CLUB ROSTER...";
+      "LOADING MEMBERS...";
 
-
-    status.classList.remove(
-      "error"
-    );
-
-
-    /*
-      Get newest members.
-    */
 
     const newest =
       await getNewestMembers();
@@ -1158,39 +932,26 @@ async function loadBoard(){
     }
 
 
-    /*
-      Get each member's profile
-      and rating information.
-    */
-
     const members =
       await Promise.all(
 
         newest.map(
-          enrichMember
+          loadMember
         )
 
       );
 
 
-    /*
-      Build all 10 rows.
-    */
-
-    memberList.innerHTML =
+    container.innerHTML =
 
       members
 
         .map(
-          createMemberHTML
+          memberHTML
         )
 
         .join("");
 
-
-    /*
-      Hide loading message.
-    */
 
     status.style.display =
       "none";
@@ -1208,12 +969,7 @@ async function loadBoard(){
 
 
     status.textContent =
-      "ROSTER UNAVAILABLE";
-
-
-    status.classList.add(
-      "error"
-    );
+      "MEMBERS UNAVAILABLE";
 
 
   }
@@ -1221,34 +977,27 @@ async function loadBoard(){
 }
 
 
-/* =========================================================
+/* ==============================
    START
-   ========================================================= */
+   ============================== */
 
-loadBoard();
+renderMembers();
 
-
-/* =========================================================
-   AUTO REFRESH
-   ========================================================= */
 
 /*
-  Refresh every 5 minutes.
-
-  This allows new club members and rating
-  information to update automatically.
+  Refresh live member information
+  every five minutes.
 */
 
 setInterval(
 
-  loadBoard,
+  renderMembers,
 
   5 * 60 * 1000
 
 );
 
 </script>
-
 
 </body>
 </html>
