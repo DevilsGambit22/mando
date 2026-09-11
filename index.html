@@ -25,9 +25,9 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
 }
 
-/* ==============================
-   MEMBER BOARD
-   ============================== */
+/* =========================================================
+   BOARD
+   ========================================================= */
 
 #board{
   position:relative;
@@ -38,23 +38,23 @@ body{
   overflow:hidden;
 }
 
-/* Board PNG */
+/* Exact filename currently in the GitHub repository */
 
 #boardArt{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
-  display:block;
   object-fit:fill;
+  display:block;
   z-index:1;
   pointer-events:none;
   user-select:none;
 }
 
-/* ==============================
-   10 API MEMBER ROWS
-   ============================== */
+/* =========================================================
+   LIVE MEMBER AREA
+   ========================================================= */
 
 #members{
   position:absolute;
@@ -71,9 +71,9 @@ body{
   z-index:5;
 }
 
-/* ==============================
-   MEMBER
-   ============================== */
+/* =========================================================
+   MEMBER ROW
+   ========================================================= */
 
 .member{
   display:grid;
@@ -102,15 +102,12 @@ body{
 
   filter:
     brightness(1.15)
-    drop-shadow(
-      0 0 7px
-      rgba(75,220,255,.8)
-    );
+    drop-shadow(0 0 7px rgba(75,220,255,.8));
 }
 
-/* ==============================
+/* =========================================================
    AVATAR
-   ============================== */
+   ========================================================= */
 
 .avatar-shell{
   display:flex;
@@ -142,9 +139,9 @@ body{
   border-radius:50%;
 }
 
-/* ==============================
-   MEMBER INFORMATION
-   ============================== */
+/* =========================================================
+   MEMBER INFO
+   ========================================================= */
 
 .member-data{
   min-width:0;
@@ -160,7 +157,6 @@ body{
 
 .username{
   display:block;
-
   min-width:0;
 
   overflow:hidden;
@@ -170,7 +166,6 @@ body{
   color:#ffffff;
 
   font-size:clamp(10px,2vw,16px);
-
   font-weight:800;
 
   text-decoration:none;
@@ -183,10 +178,6 @@ body{
 .username:hover{
   color:#baf5ff;
 }
-
-/* ==============================
-   CHESS TITLE
-   ============================== */
 
 .title{
   flex:none;
@@ -204,10 +195,6 @@ body{
   font-weight:900;
 }
 
-/* ==============================
-   MEMBER LABEL
-   ============================== */
-
 .member-label{
   margin-top:2px;
 
@@ -222,9 +209,9 @@ body{
   text-transform:uppercase;
 }
 
-/* ==============================
+/* =========================================================
    RATING
-   ============================== */
+   ========================================================= */
 
 .rating{
   min-width:clamp(40px,8vw,64px);
@@ -258,9 +245,9 @@ body{
   text-transform:uppercase;
 }
 
-/* ==============================
+/* =========================================================
    LOADING
-   ============================== */
+   ========================================================= */
 
 #status{
   position:absolute;
@@ -270,18 +257,15 @@ body{
 
   transform:translate(-50%,-50%);
 
-  z-index:10;
+  z-index:20;
 
   padding:8px 12px;
 
-  border:
-    1px solid
-    rgba(75,220,255,.6);
+  border:1px solid rgba(75,220,255,.6);
 
   border-radius:7px;
 
-  background:
-    rgba(2,10,20,.9);
+  background:rgba(2,10,20,.92);
 
   color:#a7f3ff;
 
@@ -294,13 +278,12 @@ body{
   white-space:nowrap;
 
   box-shadow:
-    0 0 15px
-    rgba(0,190,255,.35);
+    0 0 15px rgba(0,190,255,.35);
 }
 
-/* ==============================
-   MOBILE
-   ============================== */
+/* =========================================================
+   MOBILE SIDEBAR
+   ========================================================= */
 
 @media(max-width:480px){
 
@@ -344,21 +327,17 @@ body{
 
 <div id="board">
 
-  <!-- BOARD ASSET -->
+  <!-- EXACT GITHUB ASSET FILENAME -->
 
   <img
     id="boardArt"
-    src="./new-members-board.png"
-    alt="New Members"
+    src="./new-members-board.png.PNG"
+    alt="New Members Board"
   >
-
-  <!-- API STATUS -->
 
   <div id="status">
     LOADING MEMBERS...
   </div>
-
-  <!-- LIVE MEMBERS -->
 
   <div id="members"></div>
 
@@ -366,31 +345,26 @@ body{
 
 <script>
 
-/* ==============================
-   SETTINGS
-   ============================== */
+/* =========================================================
+   CONFIG
+   ========================================================= */
 
-const CLUB =
-  "the-mandalorians-club-1";
-
-const LIMIT =
-  10;
+const CLUB = "the-mandalorians-club-1";
+const LIMIT = 10;
 
 
-/* ==============================
-   FETCH CHESS.COM API
-   ============================== */
+/* =========================================================
+   API FETCH
+   ========================================================= */
 
 async function getJSON(url){
 
-  const response =
-    await fetch(url);
+  const response = await fetch(url);
 
   if(!response.ok){
 
     throw new Error(
-      "Chess.com API: " +
-      response.status
+      `Chess.com API returned ${response.status}`
     );
 
   }
@@ -399,36 +373,23 @@ async function getJSON(url){
 }
 
 
-/* ==============================
-   GET NEWEST MEMBERS
-   ============================== */
+/* =========================================================
+   NEWEST MEMBERS
+   ========================================================= */
 
 async function getNewestMembers(){
 
-  const data =
-    await getJSON(
-      `https://api.chess.com/pub/club/${CLUB}/members`
-    );
-
+  const data = await getJSON(
+    `https://api.chess.com/pub/club/${CLUB}/members`
+  );
 
   const combined = [
-
     ...(data.weekly || []),
-
     ...(data.monthly || []),
-
     ...(data.all_time || [])
-
   ];
 
-
-  /*
-    Remove duplicate usernames.
-  */
-
-  const unique =
-    new Map();
-
+  const unique = new Map();
 
   for(const member of combined){
 
@@ -436,11 +397,8 @@ async function getNewestMembers(){
       continue;
     }
 
-
     const key =
-      member.username
-        .toLowerCase();
-
+      member.username.toLowerCase();
 
     if(!unique.has(key)){
 
@@ -450,36 +408,26 @@ async function getNewestMembers(){
       );
 
     }
-
   }
-
-
-  /*
-    Sort newest join date first.
-  */
 
   return [...unique.values()]
 
     .sort(
-
       (a,b) =>
-
         (b.joined || 0) -
         (a.joined || 0)
-
     )
 
     .slice(
       0,
       LIMIT
     );
-
 }
 
 
-/* ==============================
-   HIGHEST CURRENT RATING
-   ============================== */
+/* =========================================================
+   HIGHEST RATING
+   ========================================================= */
 
 function highestRating(stats){
 
@@ -487,101 +435,64 @@ function highestRating(stats){
 
     {
       type:"Rapid",
-      value:
-        stats?.chess_rapid
-          ?.last
-          ?.rating
+      value:stats?.chess_rapid?.last?.rating
     },
 
     {
       type:"Blitz",
-      value:
-        stats?.chess_blitz
-          ?.last
-          ?.rating
+      value:stats?.chess_blitz?.last?.rating
     },
 
     {
       type:"Bullet",
-      value:
-        stats?.chess_bullet
-          ?.last
-          ?.rating
+      value:stats?.chess_bullet?.last?.rating
     },
 
     {
       type:"Daily",
-      value:
-        stats?.chess_daily
-          ?.last
-          ?.rating
+      value:stats?.chess_daily?.last?.rating
     },
 
     {
       type:"960",
-      value:
-        stats?.chess960_daily
-          ?.last
-          ?.rating
+      value:stats?.chess960_daily?.last?.rating
     }
 
   ];
 
-
-  const valid =
-    ratings.filter(
-
-      item =>
-        Number.isFinite(
-          item.value
-        )
-
-    );
-
+  const valid = ratings.filter(
+    item =>
+      Number.isFinite(item.value)
+  );
 
   if(!valid.length){
 
     return {
-
       type:"Unrated",
-
       value:"—"
-
     };
 
   }
 
-
   valid.sort(
-
     (a,b) =>
-
-      b.value -
-      a.value
-
+      b.value - a.value
   );
 
-
   return valid[0];
-
 }
 
 
-/* ==============================
-   PROFILE + STATS
-   ============================== */
+/* =========================================================
+   LOAD MEMBER PROFILE + STATS
+   ========================================================= */
 
 async function loadMember(member){
 
-  const username =
-    member.username;
-
-
   const encoded =
     encodeURIComponent(
-      username
+      member.username
     );
-
 
   const results =
     await Promise.allSettled([
@@ -596,35 +507,23 @@ async function loadMember(member){
 
     ]);
 
-
   const profile =
-
-    results[0].status ===
-    "fulfilled"
-
+    results[0].status === "fulfilled"
       ? results[0].value
-
       : {};
-
 
   const stats =
-
-    results[1].status ===
-    "fulfilled"
-
+    results[1].status === "fulfilled"
       ? results[1].value
-
       : {};
-
 
   const best =
     highestRating(stats);
 
-
   return {
 
     username:
-      username,
+      member.username,
 
     avatar:
       profile.avatar || "",
@@ -639,47 +538,34 @@ async function loadMember(member){
       best.type
 
   };
-
 }
 
 
-/* ==============================
+/* =========================================================
    FALLBACK AVATAR
-   ============================== */
+   ========================================================= */
 
 function fallbackAvatar(){
 
   const svg = `
-
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 100 100"
-  >
+    viewBox="0 0 100 100">
 
     <rect
       width="100"
       height="100"
-      fill="#07121f"
-    />
+      fill="#07121f"/>
 
     <circle
       cx="50"
       cy="28"
       r="13"
-      fill="#65e5ff"
-    />
+      fill="#65e5ff"/>
 
     <path
-      d="
-      M39 42
-      H61
-      C61 54 66 62 72 69
-      H28
-      C34 62 39 54 39 42
-      Z
-      "
-      fill="#65e5ff"
-    />
+      d="M39 42H61C61 54 66 62 72 69H28C34 62 39 54 39 42Z"
+      fill="#65e5ff"/>
 
     <rect
       x="24"
@@ -687,8 +573,7 @@ function fallbackAvatar(){
       width="52"
       height="10"
       rx="4"
-      fill="#65e5ff"
-    />
+      fill="#65e5ff"/>
 
     <rect
       x="18"
@@ -696,305 +581,190 @@ function fallbackAvatar(){
       width="64"
       height="9"
       rx="4"
-      fill="#65e5ff"
-    />
+      fill="#65e5ff"/>
 
   </svg>
-
   `;
 
-
   return (
-
     "data:image/svg+xml;charset=UTF-8," +
-
     encodeURIComponent(svg)
-
   );
-
 }
 
 
-/* ==============================
-   ESCAPE TEXT
-   ============================== */
+/* =========================================================
+   SAFE HTML
+   ========================================================= */
 
 function safe(value){
 
-  return String(
-    value ?? ""
-  )
+  return String(value ?? "")
 
-  .replaceAll(
-    "&",
-    "&amp;"
-  )
-
-  .replaceAll(
-    "<",
-    "&lt;"
-  )
-
-  .replaceAll(
-    ">",
-    "&gt;"
-  )
-
-  .replaceAll(
-    '"',
-    "&quot;"
-  )
-
-  .replaceAll(
-    "'",
-    "&#039;"
-  );
-
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 
 
-/* ==============================
-   BUILD MEMBER ROW
-   ============================== */
+/* =========================================================
+   MEMBER ROW
+   ========================================================= */
 
 function memberHTML(member){
 
   const username =
-    safe(
-      member.username
-    );
-
+    safe(member.username);
 
   const title =
-    safe(
-      member.title
-    );
-
+    safe(member.title);
 
   const rating =
-    safe(
-      member.rating
-    );
-
+    safe(member.rating);
 
   const ratingType =
-    safe(
-      member.ratingType
-    );
-
+    safe(member.ratingType);
 
   const profileURL =
-
     `https://www.chess.com/member/${
-      encodeURIComponent(
-        member.username
-      )
+      encodeURIComponent(member.username)
     }`;
 
-
   const avatar =
-
     member.avatar ||
-
     fallbackAvatar();
-
 
   return `
 
-  <div class="member">
+    <div class="member">
 
+      <div class="avatar-shell">
 
-    <div class="avatar-shell">
-
-      <img
-        class="avatar"
-
-        src="${safe(avatar)}"
-
-        alt="${username}"
-
-        loading="lazy"
-      >
-
-    </div>
-
-
-    <div class="member-data">
-
-
-      <div class="name-row">
-
-
-        ${
-          title
-
-          ?
-
-          `
-          <span class="title">
-            ${title}
-          </span>
-          `
-
-          :
-
-          ""
-        }
-
-
-        <a
-          class="username"
-
-          href="${profileURL}"
-
-          target="_blank"
-
-          rel="noopener noreferrer"
+        <img
+          class="avatar"
+          src="${safe(avatar)}"
+          alt="${username}"
+          loading="lazy"
         >
-          ${username}
-        </a>
-
 
       </div>
 
+      <div class="member-data">
 
-      <div class="member-label">
+        <div class="name-row">
 
-        NEW MEMBER
+          ${
+            title
+            ?
+            `<span class="title">${title}</span>`
+            :
+            ""
+          }
+
+          <a
+            class="username"
+            href="${profileURL}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ${username}
+          </a>
+
+        </div>
+
+        <div class="member-label">
+          NEW MEMBER
+        </div>
 
       </div>
 
+      <div class="rating">
+
+        ${rating}
+
+        <span class="rating-type">
+          ${ratingType}
+        </span>
+
+      </div>
 
     </div>
-
-
-    <div class="rating">
-
-      ${rating}
-
-
-      <span class="rating-type">
-
-        ${ratingType}
-
-      </span>
-
-
-    </div>
-
-
-  </div>
 
   `;
-
 }
 
 
-/* ==============================
-   RENDER
-   ============================== */
+/* =========================================================
+   RENDER BOARD
+   ========================================================= */
 
 async function renderMembers(){
 
   const status =
-    document.getElementById(
-      "status"
-    );
-
+    document.getElementById("status");
 
   const container =
-    document.getElementById(
-      "members"
-    );
-
+    document.getElementById("members");
 
   try{
-
 
     status.style.display =
       "block";
 
-
     status.textContent =
       "LOADING MEMBERS...";
-
 
     const newest =
       await getNewestMembers();
 
-
     if(!newest.length){
 
       throw new Error(
-        "No members returned."
+        "No club members returned."
       );
 
     }
 
-
     const members =
       await Promise.all(
-
-        newest.map(
-          loadMember
-        )
-
+        newest.map(loadMember)
       );
 
-
     container.innerHTML =
-
       members
-
-        .map(
-          memberHTML
-        )
-
+        .map(memberHTML)
         .join("");
-
 
     status.style.display =
       "none";
-
 
   }
 
   catch(error){
 
-
     console.error(
-      "Member board error:",
+      "Member board:",
       error
     );
-
 
     status.textContent =
       "MEMBERS UNAVAILABLE";
 
-
   }
-
 }
 
 
-/* ==============================
-   START
-   ============================== */
+/* =========================================================
+   START + REFRESH
+   ========================================================= */
 
 renderMembers();
 
-
-/*
-  Refresh live member information
-  every five minutes.
-*/
-
 setInterval(
-
   renderMembers,
-
   5 * 60 * 1000
-
 );
 
 </script>
