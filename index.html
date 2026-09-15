@@ -38,7 +38,10 @@ body{
   overflow:hidden;
 }
 
-/* Exact filename currently in the GitHub repository */
+/* =========================================================
+   BOARD ART
+   Keep this filename if you replace the existing GitHub PNG.
+   ========================================================= */
 
 #boardArt{
   position:absolute;
@@ -54,6 +57,7 @@ body{
 
 /* =========================================================
    LIVE MEMBER AREA
+   THREE SLOTS
    ========================================================= */
 
 #members{
@@ -62,11 +66,15 @@ body{
   left:6%;
   right:6%;
 
-  top:20.3%;
-  height:60.2%;
+  /*
+    Positioned over the three large slots
+    on the new board.
+  */
+  top:34.2%;
+  height:40.5%;
 
   display:grid;
-  grid-template-rows:repeat(10,1fr);
+  grid-template-rows:repeat(3,1fr);
 
   z-index:5;
 }
@@ -79,16 +87,16 @@ body{
   display:grid;
 
   grid-template-columns:
-    clamp(34px,7vw,54px)
+    clamp(48px,10vw,76px)
     minmax(0,1fr)
     auto;
 
   align-items:center;
 
-  gap:clamp(7px,1.5vw,13px);
+  gap:clamp(10px,2vw,18px);
 
-  padding-left:clamp(14px,3vw,25px);
-  padding-right:clamp(15px,3.3vw,28px);
+  padding-left:clamp(18px,4vw,32px);
+  padding-right:clamp(18px,4vw,32px);
 
   min-width:0;
 
@@ -102,7 +110,7 @@ body{
 
   filter:
     brightness(1.15)
-    drop-shadow(0 0 7px rgba(75,220,255,.8));
+    drop-shadow(0 0 8px rgba(75,220,255,.85));
 }
 
 /* =========================================================
@@ -114,11 +122,10 @@ body{
   align-items:center;
   justify-content:center;
 
-  width:clamp(34px,7vw,54px);
-  height:clamp(34px,7vw,54px);
+  width:clamp(48px,10vw,76px);
+  height:clamp(48px,10vw,76px);
 
   border-radius:50%;
-
   overflow:hidden;
 
   border:2px solid #65e5ff;
@@ -128,7 +135,7 @@ body{
   box-shadow:
     0 0 5px rgba(89,226,255,.95),
     0 0 12px rgba(0,188,255,.7),
-    0 0 20px rgba(0,144,255,.35);
+    0 0 22px rgba(0,144,255,.4);
 }
 
 .avatar{
@@ -151,7 +158,7 @@ body{
 .name-row{
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:6px;
   min-width:0;
 }
 
@@ -165,14 +172,14 @@ body{
 
   color:#ffffff;
 
-  font-size:clamp(10px,2vw,16px);
+  font-size:clamp(13px,2.8vw,21px);
   font-weight:800;
 
   text-decoration:none;
 
   text-shadow:
     0 0 5px rgba(255,255,255,.4),
-    0 0 9px rgba(54,216,255,.85);
+    0 0 10px rgba(54,216,255,.9);
 }
 
 .username:hover{
@@ -182,7 +189,7 @@ body{
 .title{
   flex:none;
 
-  padding:1px 4px;
+  padding:2px 5px;
 
   border-radius:3px;
 
@@ -190,21 +197,21 @@ body{
 
   color:#ffffff;
 
-  font-size:clamp(6px,1.2vw,9px);
+  font-size:clamp(7px,1.5vw,11px);
 
   font-weight:900;
 }
 
 .member-label{
-  margin-top:2px;
+  margin-top:4px;
 
   color:#9dbdcc;
 
-  font-size:clamp(6px,1.25vw,10px);
+  font-size:clamp(7px,1.5vw,11px);
 
   font-weight:700;
 
-  letter-spacing:.4px;
+  letter-spacing:.7px;
 
   text-transform:uppercase;
 }
@@ -214,13 +221,13 @@ body{
    ========================================================= */
 
 .rating{
-  min-width:clamp(40px,8vw,64px);
+  min-width:clamp(48px,10vw,78px);
 
   text-align:right;
 
   color:#a7f3ff;
 
-  font-size:clamp(10px,2.2vw,17px);
+  font-size:clamp(13px,2.8vw,21px);
 
   font-weight:900;
 
@@ -232,11 +239,11 @@ body{
 .rating-type{
   display:block;
 
-  margin-top:2px;
+  margin-top:3px;
 
   color:#8eb6c8;
 
-  font-size:clamp(5px,1vw,8px);
+  font-size:clamp(6px,1.25vw,9px);
 
   font-weight:800;
 
@@ -246,14 +253,14 @@ body{
 }
 
 /* =========================================================
-   LOADING
+   LOADING STATUS
    ========================================================= */
 
 #status{
   position:absolute;
 
   left:50%;
-  top:50%;
+  top:55%;
 
   transform:translate(-50%,-50%);
 
@@ -289,35 +296,41 @@ body{
 
   .member{
     grid-template-columns:
-      34px
+      45px
       minmax(0,1fr)
-      43px;
+      48px;
 
-    gap:7px;
+    gap:8px;
 
-    padding-left:13px;
-    padding-right:15px;
+    padding-left:14px;
+    padding-right:16px;
   }
 
   .avatar-shell{
-    width:34px;
-    height:34px;
+    width:45px;
+    height:45px;
   }
 
   .username{
-    font-size:10px;
+    font-size:12px;
+  }
+
+  .title{
+    font-size:7px;
+    padding:1px 4px;
   }
 
   .member-label{
-    font-size:6px;
+    font-size:7px;
+    margin-top:2px;
   }
 
   .rating{
-    font-size:11px;
+    font-size:12px;
   }
 
   .rating-type{
-    font-size:5px;
+    font-size:6px;
   }
 }
 </style>
@@ -327,7 +340,12 @@ body{
 
 <div id="board">
 
-  <!-- EXACT GITHUB ASSET FILENAME -->
+  <!--
+    NEW THREE-SLOT BOARD
+
+    Keep this filename if you replace the existing
+    GitHub image with the new artwork.
+  -->
 
   <img
     id="boardArt"
@@ -350,11 +368,15 @@ body{
    ========================================================= */
 
 const CLUB = "the-mandalorians-club-1";
-const LIMIT = 10;
+
+/*
+  ONLY THE THREE NEWEST MEMBERS
+*/
+const LIMIT = 3;
 
 
 /* =========================================================
-   API FETCH
+   CHESS.COM API FETCH
    ========================================================= */
 
 async function getJSON(url){
@@ -374,7 +396,7 @@ async function getJSON(url){
 
 
 /* =========================================================
-   NEWEST MEMBERS
+   GET THREE NEWEST CLUB MEMBERS
    ========================================================= */
 
 async function getNewestMembers(){
@@ -383,11 +405,23 @@ async function getNewestMembers(){
     `https://api.chess.com/pub/club/${CLUB}/members`
   );
 
+  /*
+    Chess.com separates club members into
+    weekly, monthly and all_time arrays.
+
+    Combine them first.
+  */
+
   const combined = [
     ...(data.weekly || []),
     ...(data.monthly || []),
     ...(data.all_time || [])
   ];
+
+  /*
+    A member can appear in more than one array,
+    so remove duplicates by username.
+  */
 
   const unique = new Map();
 
@@ -410,6 +444,14 @@ async function getNewestMembers(){
     }
   }
 
+  /*
+    Sort by Chess.com joined timestamp.
+
+    Highest timestamp = newest member.
+
+    Then keep ONLY the newest three.
+  */
+
   return [...unique.values()]
 
     .sort(
@@ -426,7 +468,7 @@ async function getNewestMembers(){
 
 
 /* =========================================================
-   HIGHEST RATING
+   FIND MEMBER'S HIGHEST RATING
    ========================================================= */
 
 function highestRating(stats){
@@ -484,7 +526,7 @@ function highestRating(stats){
 
 
 /* =========================================================
-   LOAD MEMBER PROFILE + STATS
+   LOAD PROFILE + STATS
    ========================================================= */
 
 async function loadMember(member){
@@ -610,7 +652,7 @@ function safe(value){
 
 
 /* =========================================================
-   MEMBER ROW
+   CREATE MEMBER ROW
    ========================================================= */
 
 function memberHTML(member){
@@ -697,7 +739,7 @@ function memberHTML(member){
 
 
 /* =========================================================
-   RENDER BOARD
+   RENDER NEW MEMBER BOARD
    ========================================================= */
 
 async function renderMembers(){
@@ -716,6 +758,10 @@ async function renderMembers(){
     status.textContent =
       "LOADING MEMBERS...";
 
+    /*
+      Retrieve newest club members.
+    */
+
     const newest =
       await getNewestMembers();
 
@@ -727,10 +773,19 @@ async function renderMembers(){
 
     }
 
+    /*
+      Retrieve each member's avatar,
+      title and ratings.
+    */
+
     const members =
       await Promise.all(
         newest.map(loadMember)
       );
+
+    /*
+      Render exactly three rows.
+    */
 
     container.innerHTML =
       members
@@ -757,10 +812,18 @@ async function renderMembers(){
 
 
 /* =========================================================
-   START + REFRESH
+   START
    ========================================================= */
 
 renderMembers();
+
+
+/* =========================================================
+   AUTOMATIC REFRESH
+
+   Refresh every five minutes so the board
+   updates when new people join the club.
+   ========================================================= */
 
 setInterval(
   renderMembers,
